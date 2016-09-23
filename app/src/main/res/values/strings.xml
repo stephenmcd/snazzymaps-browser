@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Snazzy Maps Browser</string>
+    <string name="loading">Loading some Snazzy Maps...</string>
+    <string name="no_api_key">Error: either GOOGLE_MAPS_API_KEY or SNAZZY_MAPS_API_KEY are not defined in gradle.properties</string>
+    <string name="no_styles">No styles were found</string>
+    <string name="info_dialog_title" formatted="false">%s, by %s</string>
+    <string name="info_dialog_message" formatted="false">%sView online:\n%s</string>
+</resources>
