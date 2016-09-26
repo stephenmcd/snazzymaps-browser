@@ -45,7 +45,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     /**
      * Initial location for the map.
      */
-    private static final LatLng LAT_LNG = new LatLng(-33.8688, 151.2093);
+    static final LatLng START_LATLNG = new LatLng(-33.8688, 151.2093);
 
     private SnazzyMapsStyle mStyle;
 
@@ -53,6 +53,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -67,7 +68,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             mStyle = new SnazzyMapsStyle(bundle.getString(JSON_ID));
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LAT_LNG, 14));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(START_LATLNG, 11));
             mStyle.applyToMap(googleMap);
             getSupportActionBar().setTitle(mStyle.name);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);  // Back button in action bar.

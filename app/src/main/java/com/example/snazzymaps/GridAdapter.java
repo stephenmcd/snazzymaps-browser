@@ -16,6 +16,7 @@
 
 package com.example.snazzymaps;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
@@ -124,6 +125,7 @@ class GridAdapter extends BaseAdapter {
      */
     private void initializeMap(GoogleMap map, final SnazzyMapsStyle style) {
         style.applyToMap(map);
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(MapActivity.START_LATLNG, 10));
         map.getUiSettings().setMapToolbarEnabled(false);  // Removes the map button.
         map.setMapType(GoogleMap.MAP_TYPE_NORMAL);  // Shows the map.
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
