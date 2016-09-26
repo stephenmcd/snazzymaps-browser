@@ -2,7 +2,6 @@ package com.example.snazzymaps;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -45,6 +44,9 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
 
         mGridView = (GridView) findViewById(R.id.grid);
+        // Dynamically set the number of GridView columns, based on orientation.
+        int cols = (int) ((float) getWindowManager().getDefaultDisplay().getWidth() / (float) 500);
+        mGridView.setNumColumns(cols);
 
         mProgress = new ProgressDialog(this);
         mProgress.setMessage(getString(R.string.loading));
@@ -58,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     /**
-     * Restores previously retrieved styles.
+     * Maintains currently retrieved list of styles.
      */
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -79,8 +81,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     /**
-     * Starts the process of retrieving results from the Snazzy Maps API, and also
-     * first validates the both API keys have been configured.
+     * Starts the process of retrieving results from the Snazzy Maps API,
+     * and first validates both the API keys have been configured.
      */
     @Override
     public boolean onQueryTextSubmit(String query) {
@@ -137,27 +139,6 @@ public class MainActivity extends AppCompatActivity implements
         Intent intent = new Intent(this, MapActivity.class);
         intent.putExtras(bundle);
         startActivity(intent);
-    }
-
-    /**
-     * Dynamically sets the number of GridView columns to support landscape and
-     * portrait orientations.
-     */
-    private void setGridColumns() {
-        int cols = (int) ((float) getWindowManager().getDefaultDisplay().getWidth() / (float) 500);
-        mGridView.setNumColumns(cols);
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        setGridColumns();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        setGridColumns();
     }
 
 }
