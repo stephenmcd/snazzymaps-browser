@@ -9,8 +9,8 @@
         android:gravity="center"
         android:numColumns="auto_fit"
         android:stretchMode="columnWidth"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:padding="17dp"
         android:horizontalSpacing="17dp"
         android:verticalSpacing="17dp" />

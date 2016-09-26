@@ -72,7 +72,7 @@ class GridAdapter extends BaseAdapter {
     }
 
     /**
-     * Creates a style static map for a single item in the GridView.
+     * Manages creating or re-using the ViewHolder for each grid item.
      */
     public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -92,10 +92,30 @@ class GridAdapter extends BaseAdapter {
         SnazzyMapsStyle style = (SnazzyMapsStyle) getItem(position);
         holder.mapView.setTag(style);
         if (holder.map != null) {
-            style.applyToMap(holder.map);
+            initializeMap(holder.map, style);
         }
 
         return convertView;
+    }
+
+
+    /**
+     * Initializes the map for each grid item by showing it, applying the given style, and
+     * setting up the click handler.
+     *
+     * @param map
+     * @param style
+     */
+    private void initializeMap(GoogleMap map, final SnazzyMapsStyle style) {
+        style.applyToMap(map);
+        map.getUiSettings().setMapToolbarEnabled(false);  // Removes the map button.
+        map.setMapType(GoogleMap.MAP_TYPE_NORMAL);  // Shows the map.
+        map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                ((OnGridItemClickHandler) mContext).onGridItemClick(style);
+            }
+        });
     }
 
     private class ViewHolder implements OnMapReadyCallback {
@@ -107,16 +127,7 @@ class GridAdapter extends BaseAdapter {
         public void onMapReady(GoogleMap googleMap) {
             MapsInitializer.initialize(mContext.getApplicationContext());
             map = googleMap;
-            final SnazzyMapsStyle style = (SnazzyMapsStyle) mapView.getTag();
-            style.applyToMap(map);
-            map.getUiSettings().setMapToolbarEnabled(false);  // Removes the map button.
-            map.setMapType(GoogleMap.MAP_TYPE_NORMAL);  // Shows the map.
-            map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-                @Override
-                public void onMapClick(LatLng latLng) {
-                    ((OnGridItemClickHandler) mContext).onGridItemClick(style);
-                }
-            });
+            initializeMap(map, (SnazzyMapsStyle) mapView.getTag());
         }
 
         void initializeMapView() {
