@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements
             mStylesJson = savedInstanceState.getString(STYLES_JSON);
             populateGrid();
         } else {
-            onQueryTextSubmit("");
+            onQueryTextSubmit(getString(R.string.default_search));
         }
     }
 
