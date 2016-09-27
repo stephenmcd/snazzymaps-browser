@@ -45,7 +45,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     /**
      * Initial location for the map.
      */
-    static final LatLng START_LATLNG = new LatLng(-33.8688, 151.2093);
+    static final LatLng START_LATLNG = new LatLng(40.7128, -74.0059);
 
     private SnazzyMapsStyle mStyle;
 
