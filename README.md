@@ -7,7 +7,7 @@ It does so by providing an interface for searching and browsing custom
 styles created on the [Snazzy Maps][snazzymaps] website, a community
 driven portal for contributing custom map styles.
 
-[SCREENSHOTS]
+<p align="center"><br><img src="https://github.com/stephenmcd/snazzymaps-browser/blob/master/screenshot.png"><br><br></p>
 
 Getting Started
 ---------------
