@@ -11,6 +11,7 @@ android {
         versionName "1.0"
         resValue "string", "snazzy_maps_key", (project.findProperty("SNAZZY_MAPS_API_KEY") ?: "")
         resValue "string", "google_maps_key", (project.findProperty("GOOGLE_MAPS_API_KEY") ?: "")
+        multiDexEnabled true
     }
 
     buildTypes {
